@@ -11,13 +11,15 @@
 angular
   .module('ngG8arenaApp', [
     'ngAnimate',
-    'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ipCookie',
     'ui.router',
-    'ng-token-auth'
+    'ng-token-auth',
+    'formly',
+    'formlyBootstrap'
   ])
   .constant('g8arenaConfig', {
     apiUrl: 'http://localhost:3000'
@@ -27,7 +29,8 @@ angular
     '$urlRouterProvider',
     '$authProvider',
     'g8arenaConfig',
-    function($stateProvider, $urlRouterProvider, $authProvider, g8arenaConfig) {
+    'formlyConfigProvider',
+    function($stateProvider, $urlRouterProvider, $authProvider, g8arenaConfig, formlyConfigProvider) {
       $stateProvider
         .state('home', {
           url: '/home',
@@ -74,6 +77,25 @@ angular
           templateUrl: 'scripts/match/_match.index.html',
           controller: 'MatchCtrl',
           requireAuth: true
+        })
+        .state('teams', {
+          url: '/teams',
+          abstract: true,
+          template: '<ui-view/>'
+        })
+        .state('teams.index', {
+          url: '/index',
+          templateUrl: 'scripts/teams/_teams.index.html',
+          controller: 'TeamCtrl',
+          requireAuth: true,
+          resolve: {
+            teamsWithUserPromise: ['Team', function(Team) {
+              return Team.getAllUsers()
+                .then(function(){
+                  Team.getAllTeams();
+                });
+            }]
+          }
         });
 
       $urlRouterProvider.otherwise('home');
@@ -81,6 +103,11 @@ angular
       $authProvider.configure({
         apiUrl: g8arenaConfig.apiUrl
       });
+
+      // formlyConfigProvider.setType({
+      //   name: 'input'
+      //   // templateUrl: 'scripts/match/_match.new.html'
+      // });
     }
   ])
   .run([
@@ -89,7 +116,9 @@ angular
     '$auth',
     function($rootScope, $state, $auth) {
       $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        console.log("before if");
         if(toState.requireAuth && typeof $auth.user.signedIn === 'undefined') {
+          console.log("after if");
           $auth.validateUser().then(function() {
             console.log('User validated:');
             console.log($auth.user);

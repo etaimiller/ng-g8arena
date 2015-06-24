@@ -1,1 +1,9 @@
 <h2>Add New Match</h2>
+
+<form name="myForm" ng-submit="onSubmit()" novalidate>
+  <formly-form model="model" fields="fields"></formly-form>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<p>Model:</p>
+<p>{{model}}</p>
