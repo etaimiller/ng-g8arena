@@ -6,8 +6,11 @@ angular.module('ngG8arenaApp')
     '$state',
     'Team',
     'Characters',
-    function($scope, $state, Team, Characters) {
-      $scope.teams = Team.teams
+    'Match',
+    function($scope, $state, Team, Characters, Match) {
+      $scope.teams = Team.teams;
+      $scope.allMatches = Match.allMatches;
+      $scope.readableMatches = Match.readableMatches;
 
       $scope.onSubmit = onSubmit;
       $scope.model = {};
@@ -38,7 +41,7 @@ angular.module('ngG8arenaApp')
                   return scope.model.winning_team.users[0].first_name + '\'s 1st character:';
                 }
                 else{
-                  return scope.model.winning_team.users[0].first_name + '\'s character'
+                  return scope.model.winning_team.users[0].first_name + '\'s character';
                 }
               }
             }
@@ -60,7 +63,7 @@ angular.module('ngG8arenaApp')
                   return scope.model.winning_team.users[0].first_name + '\'s 2nd character:';
                 }
                 else{
-                  return scope.model.winning_team.users[1].first_name + '\'s character'
+                  return scope.model.winning_team.users[1].first_name + '\'s character';
                 }
               }
             }
@@ -94,7 +97,7 @@ angular.module('ngG8arenaApp')
                   return scope.model.losing_team.users[0].first_name + '\'s 1st character:';
                 }
                 else{
-                  return scope.model.losing_team.users[0].first_name + '\'s character'
+                  return scope.model.losing_team.users[0].first_name + '\'s character';
                 }
               }
             }
@@ -116,7 +119,7 @@ angular.module('ngG8arenaApp')
                   return scope.model.losing_team.users[0].first_name + '\'s 2nd character:';
                 }
                 else{
-                  return scope.model.losing_team.users[1].first_name + '\'s character'
+                  return scope.model.losing_team.users[1].first_name + '\'s character';
                 }
               }
             }
@@ -139,8 +142,15 @@ angular.module('ngG8arenaApp')
       ];
 
       function onSubmit(){
-        alert("submitting");
-        $scope.options.resetModel();
+        console.log("Submitting match");
+        Match.create({
+          'match': {
+            'result': angular.toJson($scope.model)
+          }
+        }).then(function(){
+          $scope.options.resetModel();
+          $state.go('match.index');
+        });
       }
 
       function convertCharactersToSelectOptions(){

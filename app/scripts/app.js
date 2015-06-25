@@ -81,7 +81,12 @@ angular
           url: '/index',
           templateUrl: 'scripts/match/_match.index.html',
           controller: 'MatchCtrl',
-          requireAuth: true
+          requireAuth: true,
+          resolve: {
+            allMatchesPromise: ['Match', function(Match) {
+              return Match.getAllMatches();
+            }]
+          }
         })
         .state('teams', {
           url: '/teams',

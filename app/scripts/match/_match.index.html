@@ -1,1 +1,32 @@
-<h2>Match index</h2>
+<h2>Match Results</h2>
+
+<table class="table table-striped">
+  <th>Winner</th>
+  <th>Loser</th>
+  <th>Rounds</th>
+  <th>Date</th>
+  <tr ng-repeat="match in readableMatches | orderBy:'created_at':true">
+    <td>
+      <div ng-switch="match.winning_team.length">
+        <div ng-switch-when="2">
+          <p>{{match.winning_team[0].name}} & {{match.winning_team[1].name}}</p>
+        </div>
+        <div ng-switch-when="1">
+          <p>{{match.winning_team[0].name}}</p>
+        </div>
+      </div>
+    </td>
+    <td>
+      <div ng-switch="match.losing_team.length">
+        <div ng-switch-when="2">
+          <p>{{match.losing_team[0].name}} & {{match.losing_team[1].name}}</p>
+        </div>
+        <div ng-switch-when="1">
+          <p>{{match.losing_team[0].name}}</p>
+        </div>
+      </div>
+    </td>
+    <td>{{match.rounds}}</td>
+    <td>{{match.created_at | date:"H:mm 'on' MM/dd/yyyy"}}</td>
+  </tr>
+</table>

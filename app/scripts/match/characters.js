@@ -9,7 +9,7 @@ angular.module('ngG8arenaApp')
       { name: 'Baraka' },
       { name: 'Cyber Sub-Zero' },
       { name: 'Ermac' },
-      { name: 'Jade ' },
+      { name: 'Jade' },
       { name: 'Johnny Cage' },
       { name: 'Jax' },
       { name: 'Kabal' },
