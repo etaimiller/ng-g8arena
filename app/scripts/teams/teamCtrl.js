@@ -59,7 +59,7 @@ angular.module('ngG8arenaApp')
         var select_options = [];
         for(var i = 0; i < $scope.users.length; i++){
           select_options.push({
-            name: $scope.users[i].email, value: $scope.users[i]
+            name: $scope.users[i].first_name, value: $scope.users[i]
           });
         }
         return select_options;

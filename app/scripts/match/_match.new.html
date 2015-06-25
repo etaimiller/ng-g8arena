@@ -1,9 +1,9 @@
 <h2>Add New Match</h2>
 
-<form name="myForm" ng-submit="onSubmit()" novalidate>
-  <formly-form model="model" fields="fields"></formly-form>
-  <button type="submit" class="btn btn-primary">Submit</button>
+<form name="myForm" ng-submit="myForm.$valid && onSubmit()" novalidate>
+  <formly-form model="model" fields="fields" form="myForm" options="options"></formly-form>
+  <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-primary submit-button">Submit</button>
 </form>
 
 <p>Model:</p>
-<p>{{model}}</p>
+<pre>{{model | json}}</pre>

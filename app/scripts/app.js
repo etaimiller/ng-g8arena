@@ -70,7 +70,12 @@ angular
           url: '/new',
           templateUrl: 'scripts/match/_match.new.html',
           controller: 'MatchCtrl',
-          requireAuth: true
+          requireAuth: true,
+          resolve: {
+            teamsWithUserPromise: ['Team', function(Team) {
+              return Team.getAllTeams();
+            }]
+          }
         })
         .state('match.index', {
           url: '/index',
