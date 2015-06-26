@@ -4,7 +4,8 @@
   "dependencies": {
     "express": "^4.13.0",
     "gzippo": "^0.2.0",
-    "morgan": "^1.5.1"
+    "morgan": "^1.5.1",
+    "tough-cookie": "^2.0.0"
   },
   "repository": {},
   "devDependencies": {
