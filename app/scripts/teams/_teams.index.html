@@ -1,15 +1,28 @@
-<h2>Team index</h2>
+<h4>Current Teams</h4>
+<table class="table table-striped">
+  <th>Team</th>
+  <th>Record</th>
+  <th>Created at</th>
+  <tr ng-repeat="team in teams | orderBy:'created_at':true">
+    <td>
+      <div ng-switch="team.users.length">
+        <div ng-switch-when="2">
+          <p>{{team.users[0].first_name}} & {{team.users[1].first_name}}</p>
+        </div>
+        <div ng-switch-when="1">
+          <p>{{team.users[0].first_name}}</p>
+        </div>
+      </div>
+    </td>
+    <td>coming soon...</td>
+    <td>{{team.created_at | date:"H:mm 'on' MM/dd/yyyy"}}</td>
+  </tr>
+</table>
 
-<h2>Teams</h2>
-<div ng-repeat="team in teams">
-  <p>{{team}}</p>
-</div>
+<br>
 
-<h2>Create a new team</h2>
+<h3>Don't see yourself? Create a new team</h3>
 <form name="teamForm" ng-submit="onSubmit()" novalidate>
   <formly-form model="model" fields="fields"></formly-form>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-<h2>Model</h2>
-<p>{{model}}</p>

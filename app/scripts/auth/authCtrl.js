@@ -12,7 +12,7 @@ angular.module('ngG8arenaApp')
       $scope.login = function() {
         $auth.submitLogin($scope.user)
         .then(function(){
-          $state.go('profile.show');
+          $state.go('match.index');
         })
         .catch(function(resp) {
           console.log(resp);
@@ -24,7 +24,7 @@ angular.module('ngG8arenaApp')
         console.log($scope.user);
         $auth.submitRegistration($scope.user)
         .then(function(){
-          $state.go('profile.show');
+          $state.go('team.index');
         })
         .catch(function(resp) {
           console.log(resp);
