@@ -1,0 +1,15 @@
+<h2>Team index</h2>
+
+<h2>Teams</h2>
+<div ng-repeat="team in teams">
+  <p>{{team}}</p>
+</div>
+
+<h2>Create a new team</h2>
+<form name="teamForm" ng-submit="onSubmit()" novalidate>
+  <formly-form model="model" fields="fields"></formly-form>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h2>Model</h2>
+<p>{{model}}</p>
