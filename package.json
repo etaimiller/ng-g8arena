@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "dependencies": {
     "express": "^4.13.0",
+    "grunt-google-cdn": "^0.4.3",
     "gzippo": "^0.2.0",
-    "morgan": "^1.5.1",
-    "tough-cookie": "^2.0.0"
+    "morgan": "^1.5.1"
   },
   "repository": {},
   "devDependencies": {
