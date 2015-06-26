@@ -22,7 +22,7 @@ angular
     'formlyBootstrap'
   ])
   .constant('g8arenaConfig', {
-    apiUrl: 'http://localhost:3000'
+    apiUrl: 'http://g8arena.herokuapp.com'
   })
   .config([
     '$stateProvider',
