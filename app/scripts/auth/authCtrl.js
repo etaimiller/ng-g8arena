@@ -24,7 +24,7 @@ angular.module('ngG8arenaApp')
         console.log($scope.user);
         $auth.submitRegistration($scope.user)
         .then(function(){
-          $state.go('team.index');
+          $state.go('teams.index');
         })
         .catch(function(resp) {
           console.log(resp);
